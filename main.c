@@ -102,7 +102,7 @@ int main() {
     //google code style a-z_a-z:person_name
 
 
-    //常量：不变的量
+    //常量：不变的量（只读变量）：必须立即赋初值
     // const <type> read only variable
     const int kRED=0xFF0000;
     const int kGREEN=0x00FF00;
