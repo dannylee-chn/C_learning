@@ -43,3 +43,11 @@ gcc 文件名.c -o program
 ### 第 7 章 吃透指针
 
 - [quicksort.c](quicksort.c) Hoare 分割法 指针版快速排序
+- [`pointer_value.c`](pointer_value.c) 指针与内存值
+- [`lvalue_rvalue.c`](lvalue_rvalue.c) 左值右值讲解
+- [`dynamic_memory.c`](dynamic_memory.c) malloc/free动态内存分配
+
+# 第8章 结构体与共用体
+- [`struct.c`](struct.c) 结构体基础
+- [`memory.c`](memory.c) 结构体内存对齐、内存布局
+- [`union.c`](union.c) 共用体(联合体)使用演示
