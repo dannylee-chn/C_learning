@@ -1,56 +1,64 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#define PLAYER_COUNT 50
-void swapElements(int array[],int first,int second) {
-    int temp=array[first];
-    array[first]=array[second];
-    array[second]=temp;
+
+void SwapInt(int *a,int *b) {
+    int temp=*a;
+    *a=*b;
+    *b=temp;
 }
 
-void ShuffleArray(int array[],int length) {
+void Shuffle(int *array,int length) {
     srand(time(NULL));
-    //[0,rand_max]
     for (int i=length-1;i>0;i--) {
-        int random_number=rand()%i;
-        swapElements(array,i,random_number);
+         int random_number=rand()%i;
+        SwapInt(array+i,array+random_number);
     }
+}
+
+int *Partition(int *low, int *high) {
+    int pivot=*(low+(high-low)/2);
+    int *p=low;
+    int *q=high;
+
+    while (1) {
+        while (*p<pivot)p++;
+        while (*q>pivot)q--;
+
+        if (p>=q) break;
+        SwapInt(p++,q--);
+    }
+    return q;
+}
+
+void QuickSort(int *low,int *high) {
+    if (low>=high) return;
+    int *partition=Partition(low,high);
+    QuickSort(low,partition);
+    QuickSort(partition+1,high);
+}
+
+#define PLAYER_COUNT 10
+void PRINT_INT_ARRAY(int *arr, int n) {
+    for(int i = 0; i < n; i++){
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
 
 int main() {
-    int players[PLAYER_COUNT];
-    for (int i=0;i<50;i++) {
-        players[i]=i;
+    int *players = malloc(sizeof(int) * PLAYER_COUNT);
+    if (!players) {
+        return 1;
     }
-    for(int m = 0; m < 5; m++) {
-        printf("%d",players[m]);
+    for (int i = 0; i < PLAYER_COUNT; ++i) {
+        players[i] = i;
     }
+    Shuffle(players, PLAYER_COUNT);
+    PRINT_INT_ARRAY(players, PLAYER_COUNT);
+    QuickSort(players, players + PLAYER_COUNT - 1);
+    PRINT_INT_ARRAY(players, PLAYER_COUNT);
+    free(players);
 
-    ShuffleArray(players,PLAYER_COUNT);
-    for(int n = 0; n < 5; n++) {
-        printf("%d",players[n]);
-    }
-}
-
-
-//i是用来遍历数组，partition划分中间位置
-int Partition(int array[],int low,int high) {
-    int pivot=array[high];
-    int partition=low;
-    for (int i=low;i<high;i++) {
-        if (array[i]<pivot) {
-            swapElements(array,i,partition++);
-        }
-    }
-    swapElements(array,partition,high);
-
-    return partition;
-
-}
-
-void  QuickSort(int array[],int low,int high) {
-    if (low>=high)return;
-    int partition=Partition(array,low,high);
-    QuickSort(array,low,partition-1);
-    QuickSort(array,partition+1,high);
+    return 0;
 }
