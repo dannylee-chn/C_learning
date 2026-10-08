@@ -20,7 +20,7 @@ gcc 文件名.c -o program
 - [main.c](main.c) 综合演示：整型 /char/ 浮点、变量、常量、运算符、if-else、switch、for/while 循环、猜数字小游戏
 - [variable.c](variable.c) 变量基础
 - [char.c](char.c) 字符与字符数组
-- [printf.c](printf.c) printf 格式化输出练习
+- [printlnf.c](printlnf.c) printf 格式化输出练习
 
 ### 第 4 章 函数与程序结构
 
