@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdarg.h>
 
+//变长数组
 void Printlnf(const char* format,...) {
     va_list args;
     va_start(args,format);
